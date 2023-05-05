@@ -1,6 +1,15 @@
 {
 .appVersion = "3189";
 .formatVersion = 3;
+DisplayStrings = (
+"ੂ",
+"ਂ",
+"ੁ",
+"ੇ",
+"◌",
+"ੈ",
+"ਡ"
+);
 classes = (
 {
 automatic = 1;
@@ -895,11 +904,6 @@ lookup ccmp_Other_1 {
 	sub @Markscomb @Markscomb' by @MarkscombCase;
 	sub @Uppercase @Markscomb' by @MarkscombCase;
 } ccmp_Other_1;
-
-lookup ccmp_soft_dotted {
-    lookupflag UseMarkFilteringSet @CombiningTopAccents;
-    sub [i j]' @CombiningTopAccents by [idotless jdotless];
-} ccmp_soft_dotted;
 
 lookup ccmp_Other_2 {
 	sub @Markscomb' @MarkscombCase by @MarkscombCase;
@@ -63052,13 +63056,14 @@ unicode = 32;
 },
 {
 glyphname = nbspace;
-lastChange = "2023-05-04 08:10:09 +0000";
+lastChange = "2023-05-05 12:41:08 +0000";
 layers = (
 {
 layerId = "49A649E9-A574-4B20-B218-33A3EC71A7EA";
 width = 250;
 }
 );
+metricWidth = space;
 unicode = 160;
 },
 {
@@ -73787,17 +73792,29 @@ unicode = 8240;
 },
 {
 glyphname = dottedCircle;
-lastChange = "2023-05-05 09:33:17 +0000";
+lastChange = "2023-05-05 13:37:20 +0000";
 layers = (
 {
 anchors = (
 {
+name = AboveBaseMark2;
+pos = (313,584);
+},
+{
 name = AboveBaseMarks;
-pos = (306,584);
+pos = (298,584);
+},
+{
+name = AboveBaseMatra;
+pos = (320,584);
 },
 {
 name = BelowBaseMarks;
-pos = (306,16);
+pos = (316,16);
+},
+{
+name = BelowBaseMatra;
+pos = (287,16);
 },
 {
 name = bottom;
