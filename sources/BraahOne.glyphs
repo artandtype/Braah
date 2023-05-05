@@ -874,6 +874,47 @@ tag = liga;
 },
 {
 automatic = 1;
+code = "lookup ccmp_DFLT_1 {
+	lookupflag 0;
+	sub brevecomb acutecomb by brevecomb_acutecomb;
+	sub brevecomb gravecomb by brevecomb_gravecomb;
+	sub brevecomb hookabovecomb by brevecomb_hookabovecomb;
+	sub brevecomb tildecomb by brevecomb_tildecomb;
+	sub circumflexcomb acutecomb by circumflexcomb_acutecomb;
+	sub circumflexcomb gravecomb by circumflexcomb_gravecomb;
+	sub circumflexcomb hookabovecomb by circumflexcomb_hookabovecomb;
+	sub circumflexcomb tildecomb by circumflexcomb_tildecomb;
+} ccmp_DFLT_1;
+
+lookup ccmp_Other_1 {
+	@CombiningTopAccents = [acutecomb brevecomb caroncomb circumflexcomb commaturnedabovecomb dieresiscomb dotaccentcomb gravecomb hookabovecomb hungarumlautcomb macroncomb ringcomb tildecomb];
+	@CombiningNonTopAccents = [brevebelowcomb cedillacomb dieresisbelowcomb dotbelowcomb macronbelowcomb ogonekcomb horncomb];
+	sub [i j]' @CombiningTopAccents by [idotless jdotless];
+	sub [i j]' @CombiningNonTopAccents @CombiningTopAccents by [idotless jdotless];
+	@Markscomb = [dieresis dotaccent grave acute hungarumlaut circumflex caron breve ring tilde macron];
+	@MarkscombCase = [dieresis.case dotaccent.case grave.case acute.case hungarumlaut.case circumflex.case caron.case breve.case ring.case tilde.case macron.case];
+	sub @Markscomb @Markscomb' by @MarkscombCase;
+	sub @Uppercase @Markscomb' by @MarkscombCase;
+} ccmp_Other_1;
+
+lookup ccmp_Other_2 {
+	sub @Markscomb' @MarkscombCase by @MarkscombCase;
+	sub @MarkscombCase @Markscomb' by @MarkscombCase;
+} ccmp_Other_2;
+
+lookup ccmp_latn_1 {
+	sub fi by f i;
+	sub fl by f l;
+	sub Ldot by L periodcentered.loclCAT.case;
+} ccmp_latn_1;
+
+script latn;
+lookup ccmp_latn_1;
+";
+tag = ccmp;
+},
+{
+automatic = 1;
 code = "script latn;
 language AZE;
 lookup locl_latn_0 {
@@ -919,7 +960,10 @@ tag = locl;
 code = " # Post Base Forms
 
 script guru;
-sub YaVirama.gm by YaHalant.gm;
+sub ya-gurmukhi halant-gurmukhi by YaHalant.gm;
+
+script guru;
+sub halant-gurmukhi ya-gurmukhi by YaHalant.gm;
   
 ";
 tag = pstf;
@@ -928,67 +972,68 @@ tag = pstf;
 code = " #Post Base Substitutions
   
 script guru;
-  sub KaViramaRa.gm MatraU.gm by KaViramaRaMatraU.gm;
-  sub KaViramaRa.gm MatraUu.gm by KaViramaRaMatraUu.gm; 
+  sub KaViramaRa.gm uMatra-gurmukhi by KaViramaRaMatraU.gm;
+  sub KaViramaRa.gm uuMatra-gurmukhi by KaViramaRaMatraUu.gm; 
 
 script gur2;
-  sub KaViramaRa.gm MatraU.gm by KaViramaRaMatraU.gm;
-  sub KaViramaRa.gm MatraUu.gm by KaViramaRaMatraUu.gm; ";
+  sub KaViramaRa.gm uMatra-gurmukhi by KaViramaRaMatraU.gm;
+  sub KaViramaRa.gm uuMatra-gurmukhi by KaViramaRaMatraUu.gm; 
+";
 tag = psts;
 },
 {
 code = "#> feature
 # GPOS feature : Mark Positioning
-    markClass Bindi.gm <anchor -143 740> @AboveBaseMark2;
-    markClass MatraUu.gm <anchor -334 -50> @BelowBaseMatra;
-    markClass MatraEe.gm <anchor -198 568> @AboveBaseMatra;
-    markClass Tippi.gm <anchor -147 817> @AboveBaseMarks;
+    markClass bindi-gurmukhi <anchor -143 740> @AboveBaseMark2;
+    markClass uuMatra-gurmukhi <anchor -334 -50> @BelowBaseMatra;
+    markClass eeMatra-gurmukhi <anchor -198 568> @AboveBaseMatra;
+    markClass tippi-gurmukhi <anchor -147 817> @AboveBaseMarks;
 
   lookup markLTR {
-      pos base VowelAa.gm
+      pos base aa-gurmukhi
           <anchor 1030 710> mark @AboveBaseMark2
           <anchor 1030 816> mark @AboveBaseMarks;
-      pos base Ka.gm
+      pos base ka-gurmukhi
           <anchor 509 710> mark @AboveBaseMark2
           <anchor 513 816> mark @AboveBaseMarks
           <anchor 461 568> mark @AboveBaseMatra
           <anchor 377 -80> mark @BelowBaseMatra;
-      pos base Ja.gm
+      pos base ja-gurmukhi
           <anchor 556 710> mark @AboveBaseMark2
           <anchor 559 816> mark @AboveBaseMarks
           <anchor 490 568> mark @AboveBaseMatra
           <anchor 364 -80> mark @BelowBaseMatra;
-      pos base Ta.gm
+      pos base ta-gurmukhi
           <anchor 480 710> mark @AboveBaseMark2
           <anchor 480 816> mark @AboveBaseMarks
           <anchor 391 568> mark @AboveBaseMatra
           <anchor 319 -55> mark @BelowBaseMatra;
-      pos base Da.gm
+      pos base da-gurmukhi
           <anchor 554 710> mark @AboveBaseMark2
           <anchor 555 816> mark @AboveBaseMarks
           <anchor 486 568> mark @AboveBaseMatra
           <anchor 431 -56> mark @BelowBaseMatra;
-      pos base Na.gm
+      pos base na-gurmukhi
           <anchor 335 710> mark @AboveBaseMark2
           <anchor 339 816> mark @AboveBaseMarks
           <anchor 270 568> mark @AboveBaseMatra
           <anchor 315 -60> mark @BelowBaseMatra;
-      pos base Pa.gm
+      pos base pa-gurmukhi
           <anchor 580 710> mark @AboveBaseMark2
           <anchor 580 816> mark @AboveBaseMarks
           <anchor 511 568> mark @AboveBaseMatra
           <anchor 387 -80> mark @BelowBaseMatra;
-      pos base Ma.gm
+      pos base ma-gurmukhi
           <anchor 540 710> mark @AboveBaseMark2
           <anchor 540 816> mark @AboveBaseMarks
           <anchor 471 568> mark @AboveBaseMatra
           <anchor 348 -80> mark @BelowBaseMatra;
-      pos base Ra.gm
+      pos base ra-gurmukhi
           <anchor 480 710> mark @AboveBaseMark2
           <anchor 480 816> mark @AboveBaseMarks
           <anchor 411 568> mark @AboveBaseMatra
           <anchor 302 -55> mark @BelowBaseMatra;
-      pos base MatraI.gm
+      pos base iMatra-gurmukhi
           <anchor 675 710> mark @AboveBaseMark2;
   } markLTR;
 
@@ -1001,11 +1046,12 @@ tag = mark;
 code = " #Akhanda Forms
 
 script guru;
-  sub Ka.gm Ra.gm Virama.gm by KaViramaRa.gm;
-  sub Rra.gm Ha.gm Virama.gm by RraViramaHa.gm;
+  sub ka-gurmukhi ra-gurmukhi halant-gurmukhi by KaViramaRa.gm;
+  sub rra-gurmukhi ha-gurmukhi halant-gurmukhi by RraViramaHa.gm;
 script gur2;
-  sub Ka.gm Virama.gm Ra.gm by KaViramaRa.gm;
-  sub Rra.gm Virama.gm Ha.gm by RraViramaHa.gm;";
+  sub ka-gurmukhi halant-gurmukhi ra-gurmukhi by KaViramaRa.gm;
+  sub rra-gurmukhi halant-gurmukhi ha-gurmukhi by RraViramaHa.gm;
+";
 tag = akhn;
 },
 {
@@ -1013,17 +1059,18 @@ code = " # Nukta consonants
 
 script guru; #Gurmukhi
 lookup lookup1 {
-    sub Kha.gm Nukta.gm by Khha.gm;
-    sub Ga.gm Nukta.gm by Ghha.gm;
-    sub Sa.gm Nukta.gm by Sha.gm;
-    sub La.gm Nukta.gm by Lla.gm;
-    sub Ja.gm Nukta.gm by Za.gm;
-    sub Pha.gm Nukta.gm by Fa.gm;
-    sub Dda.gm Nukta.gm by Rra.gm;
+    sub kha-gurmukhi nukta-gurmukhi by khha-gurmukhi;
+    sub ga-gurmukhi nukta-gurmukhi by ghha-gurmukhi;
+    sub sa-gurmukhi nukta-gurmukhi by sha-gurmukhi;
+    sub la-gurmukhi nukta-gurmukhi by lla-gurmukhi;
+    sub ja-gurmukhi nukta-gurmukhi by za-gurmukhi;
+    sub pha-gurmukhi nukta-gurmukhi by fa-gurmukhi;
+    sub dda-gurmukhi nukta-gurmukhi by rra-gurmukhi;
 } lookup1;
 
 script guru; #Gurmukhi v.2
-lookup lookup1;";
+lookup lookup1;
+";
 tag = nukt;
 },
 {
@@ -1031,17 +1078,18 @@ code = " #Below Base Form
 
 script gur2;
 lookup lookup2 {
-  sub Virama.gm Ra.gm by RaHalant.gm;
-  sub Virama.gm Ha.gm by HaHalant.gm;
-  sub Virama.gm Va.gm by VaHalant.gm;  
+  sub halant-gurmukhi ra-gurmukhi by RaHalant.gm;
+  sub halant-gurmukhi ha-gurmukhi by HaHalant.gm;
+  sub halant-gurmukhi va-gurmukhi by VaHalant.gm;  
 
 
 } lookup2;
 
 script guru; 
-  sub Ra.gm Virama.gm by RaHalant.gm;
-  sub Ha.gm Virama.gm by HaHalant.gm;
-  sub Va.gm Virama.gm by VaHalant.gm;";
+  sub ra-gurmukhi halant-gurmukhi by RaHalant.gm;
+  sub ha-gurmukhi halant-gurmukhi by HaHalant.gm;
+  sub va-gurmukhi halant-gurmukhi by VaHalant.gm;
+";
 tag = blwf;
 },
 {
@@ -1049,32 +1097,33 @@ code = " # Above Base Substitutions
 
 script guru;
 lookup lookup3 {
-    sub MatraEe.gm Bindi.gm by MatraEeBindi.gm;
-    sub MatraAi.gm Bindi.gm by MatraAiBindi.gm;
-    sub MatraOo.gm Bindi.gm by MatraOoBindi.gm;
-    sub MatraAu.gm Bindi.gm by MatraAuBindi.gm;
-    sub MatraIi.gm Bindi.gm by MatraIiBindi.gm;
-    sub MatraEe.gm Addak.gm by MatraEeAddak.gm;
-    sub MatraAi.gm Addak.gm by MatraAiAddak.gm;
-    sub MatraOo.gm Addak.gm by MatraOoAddak.gm;
-    sub MatraAu.gm Addak.gm by MatraAuAddak.gm;
-    sub MatraEe.gm AdakBindi.gm by MatraEeAddakBindi.gm;
-    sub MatraAi.gm AdakBindi.gm by MatraAiAddakBindi.gm;
-    sub MatraOo.gm AdakBindi.gm by MatraOoAddakBindi.gm;
-    sub MatraAu.gm AdakBindi.gm by MatraAuAddakBindi.gm;
+    sub eeMatra-gurmukhi bindi-gurmukhi by MatraEeBindi.gm;
+    sub aiMatra-gurmukhi bindi-gurmukhi by MatraAiBindi.gm;
+    sub ooMatra-gurmukhi bindi-gurmukhi by MatraOoBindi.gm;
+    sub auMatra-gurmukhi bindi-gurmukhi by MatraAuBindi.gm;
+    sub iiMatra-gurmukhi bindi-gurmukhi by MatraIiBindi.gm;
+    sub eeMatra-gurmukhi addak-gurmukhi by MatraEeAddak.gm;
+    sub aiMatra-gurmukhi addak-gurmukhi by MatraAiAddak.gm;
+    sub ooMatra-gurmukhi addak-gurmukhi by MatraOoAddak.gm;
+    sub auMatra-gurmukhi addak-gurmukhi by MatraAuAddak.gm;
+    sub eeMatra-gurmukhi addakBindi-gurmukhi by MatraEeAddakBindi.gm;
+    sub aiMatra-gurmukhi addakBindi-gurmukhi by MatraAiAddakBindi.gm;
+    sub ooMatra-gurmukhi addakBindi-gurmukhi by MatraOoAddakBindi.gm;
+    sub auMatra-gurmukhi addakBindi-gurmukhi by MatraAuAddakBindi.gm;
   
 } lookup3;
 
 lookup lookup4 {
-  sub [Na.gm Ttha.gm] [MatraEe.gm MatraAi.gm MatraOo.gm MatraAu.gm]' by [MatraEe.gm.alt MatraAi.gm.alt MatraOo.gm.alt MatraAu.gm.alt];
-  sub [Na.gm Ttha.gm] [MatraEeBindi.gm MatraAiBindi.gm MatraOoBindi.gm MatraAuBindi.gm MatraEeAddak.gm MatraAiAddak.gm MatraOoAddak.gm MatraAuAddak.gm MatraEeAddakBindi.gm MatraAiAddakBindi.gm MatraOoAddakBindi.gm MatraAuAddakBindi.gm]' by [MatraEeBindi.gm.alt MatraAiBindi.gm.alt MatraOoBindi.gm.alt MatraAuBindi.gm.alt MatraEeAddak.gm.alt MatraAiAddak.gm.alt MatraOoAddak.gm.alt MatraAuAddak.gm.alt MatraEeAddakBindi.gm.alt MatraAiAddakBindi.gm.alt MatraOoAddakBindi.gm.alt MatraAuAddakBindi.gm.alt];
-  sub [VowelIi.gm VowelU.gm VowelUu.gm VowelEe.gm VowelAi.gm VowelOo.gm VowelAu.gm MatraIi.gm Ura.gm] [Addak.gm AdakBindi.gm]' by [Addak.gm.alt AdakBindi.gm.alt];
+  sub [na-gurmukhi ttha-gurmukhi] [eeMatra-gurmukhi aiMatra-gurmukhi ooMatra-gurmukhi auMatra-gurmukhi]' by [MatraEe.gm.alt MatraAi.gm.alt MatraOo.gm.alt MatraAu.gm.alt];
+  sub [na-gurmukhi ttha-gurmukhi] [MatraEeBindi.gm MatraAiBindi.gm MatraOoBindi.gm MatraAuBindi.gm MatraEeAddak.gm MatraAiAddak.gm MatraOoAddak.gm MatraAuAddak.gm MatraEeAddakBindi.gm MatraAiAddakBindi.gm MatraOoAddakBindi.gm MatraAuAddakBindi.gm]' by [MatraEeBindi.gm.alt MatraAiBindi.gm.alt MatraOoBindi.gm.alt MatraAuBindi.gm.alt MatraEeAddak.gm.alt MatraAiAddak.gm.alt MatraOoAddak.gm.alt MatraAuAddak.gm.alt MatraEeAddakBindi.gm.alt MatraAiAddakBindi.gm.alt MatraOoAddakBindi.gm.alt MatraAuAddakBindi.gm.alt];
+  sub [ii-gurmukhi u-gurmukhi uu-gurmukhi ee-gurmukhi ai-gurmukhi oo-gurmukhi au-gurmukhi iiMatra-gurmukhi ura-gurmukhi] [addak-gurmukhi addakBindi-gurmukhi]' by [Addak.gm.alt AdakBindi.gm.alt];
 } lookup4;
 
 
 script guru;
 lookup lookup3;
-lookup lookup4;";
+lookup lookup4;
+";
 tag = abvs;
 },
 {
@@ -1124,6 +1173,23 @@ tag = subs;
 },
 {
 automatic = 1;
+code = "sub zero by zeroinferior;
+sub one by oneinferior;
+sub two by twoinferior;
+sub three by threeinferior;
+sub four by fourinferior;
+sub five by fiveinferior;
+sub six by sixinferior;
+sub seven by seveninferior;
+sub eight by eightinferior;
+sub nine by nineinferior;
+sub parenleft by parenleftinferior;
+sub parenright by parenrightinferior;
+";
+tag = sinf;
+},
+{
+automatic = 1;
 code = "sub zero by zerosuperior;
 sub one by onesuperior;
 sub two by twosuperior;
@@ -1144,48 +1210,49 @@ code = " #Halant forms
 
 script guru; 
 lookup lookup6 {
-  sub Ka.gm Virama.gm by KaVirama.gm;
-  sub Kha.gm Virama.gm by KhaVirama.gm;
-  sub Ga.gm Virama.gm by GaVirama.gm;
-  sub Gha.gm Virama.gm by GhaVirama.gm;
-  sub Nga.gm Virama.gm by NgaVirama.gm;
-  sub Ca.gm Virama.gm by CaVirama.gm;
-  sub Cha.gm Virama.gm by ChaVirama.gm;
-  sub Ja.gm Virama.gm by JaVirama.gm;
-  sub Jha.gm Virama.gm by JhaVirama.gm;
-  sub Nya.gm Virama.gm by NyaVirama.gm;
-  sub Tta.gm Virama.gm by TtaVirama.gm;
-  sub Ttha.gm Virama.gm by TthaVirama.gm;
-  sub Dda.gm Virama.gm by DdaVirama.gm;
-  sub Ddha.gm Virama.gm by DdhaVirama.gm;
-  sub Nna.gm Virama.gm by NnaVirama.gm;
-  sub Ta.gm Virama.gm by TaVirama.gm;
-  sub Tha.gm Virama.gm by ThaVirama.gm;
-  sub Da.gm Virama.gm by DaVirama.gm;
-  sub Dha.gm Virama.gm by DhaVirama.gm;
-  sub Na.gm Virama.gm by NaVirama.gm;
-  sub Pa.gm Virama.gm by PaVirama.gm;
-  sub Pha.gm Virama.gm by PhaVirama.gm;
-  sub Ba.gm Virama.gm by BaVirama.gm;
-  sub Bha.gm Virama.gm by BhaVirama.gm;
-  sub Ma.gm Virama.gm by MaVirama.gm;
-  sub Ya.gm Virama.gm by YaVirama.gm;
-  sub Ra.gm Virama.gm by RaVirama.gm;
-  sub La.gm Virama.gm by LaVirama.gm;
-  sub Lla.gm Virama.gm by LlaVirama.gm;
-  sub Va.gm Virama.gm by VaVirama.gm;
-  sub Sha.gm Virama.gm by ShaVirama.gm;
-  sub Sa.gm Virama.gm by SaVirama.gm;
-  sub Ha.gm Virama.gm by HaVirama.gm;
-  sub Khha.gm Virama.gm by KhhaVirama.gm;
-  sub Ghha.gm Virama.gm by GhhaVirama.gm;
-  sub Za.gm Virama.gm by ZaVirama.gm;
-  sub Rra.gm Virama.gm by RraVirama.gm;
-  sub Fa.gm Virama.gm by FaVirama.gm;
+  sub ka-gurmukhi halant-gurmukhi by KaVirama.gm;
+  sub kha-gurmukhi halant-gurmukhi by KhaVirama.gm;
+  sub ga-gurmukhi halant-gurmukhi by GaVirama.gm;
+  sub gha-gurmukhi halant-gurmukhi by GhaVirama.gm;
+  sub nga-gurmukhi halant-gurmukhi by NgaVirama.gm;
+  sub ca-gurmukhi halant-gurmukhi by CaVirama.gm;
+  sub cha-gurmukhi halant-gurmukhi by ChaVirama.gm;
+  sub ja-gurmukhi halant-gurmukhi by JaVirama.gm;
+  sub jha-gurmukhi halant-gurmukhi by JhaVirama.gm;
+  sub nya-gurmukhi halant-gurmukhi by NyaVirama.gm;
+  sub tta-gurmukhi halant-gurmukhi by TtaVirama.gm;
+  sub ttha-gurmukhi halant-gurmukhi by TthaVirama.gm;
+  sub dda-gurmukhi halant-gurmukhi by DdaVirama.gm;
+  sub ddha-gurmukhi halant-gurmukhi by DdhaVirama.gm;
+  sub nna-gurmukhi halant-gurmukhi by NnaVirama.gm;
+  sub ta-gurmukhi halant-gurmukhi by TaVirama.gm;
+  sub tha-gurmukhi halant-gurmukhi by ThaVirama.gm;
+  sub da-gurmukhi halant-gurmukhi by DaVirama.gm;
+  sub dha-gurmukhi halant-gurmukhi by DhaVirama.gm;
+  sub na-gurmukhi halant-gurmukhi by NaVirama.gm;
+  sub pa-gurmukhi halant-gurmukhi by PaVirama.gm;
+  sub pha-gurmukhi halant-gurmukhi by PhaVirama.gm;
+  sub ba-gurmukhi halant-gurmukhi by BaVirama.gm;
+  sub bha-gurmukhi halant-gurmukhi by BhaVirama.gm;
+  sub ma-gurmukhi halant-gurmukhi by MaVirama.gm;
+  sub ya-gurmukhi halant-gurmukhi by YaVirama.gm;
+  sub ra-gurmukhi halant-gurmukhi by RaVirama.gm;
+  sub la-gurmukhi halant-gurmukhi by LaVirama.gm;
+  sub lla-gurmukhi halant-gurmukhi by LlaVirama.gm;
+  sub va-gurmukhi halant-gurmukhi by VaVirama.gm;
+  sub sha-gurmukhi halant-gurmukhi by ShaVirama.gm;
+  sub sa-gurmukhi halant-gurmukhi by SaVirama.gm;
+  sub ha-gurmukhi halant-gurmukhi by HaVirama.gm;
+  sub khha-gurmukhi halant-gurmukhi by KhhaVirama.gm;
+  sub ghha-gurmukhi halant-gurmukhi by GhhaVirama.gm;
+  sub za-gurmukhi halant-gurmukhi by ZaVirama.gm;
+  sub rra-gurmukhi halant-gurmukhi by RraVirama.gm;
+  sub fa-gurmukhi halant-gurmukhi by FaVirama.gm;
 } lookup6;
 
 script gur2;
-lookup lookup6;";
+lookup lookup6;
+";
 tag = haln;
 },
 {
@@ -1212,21 +1279,21 @@ code = " # Below Base Substitutions
 
 script guru;
 lookup lookup5 { #Half characters 
-  sub RaHalant.gm MatraU.gm by RaHalantMatraU.gm;
-  sub RaHalant.gm MatraUu.gm by RaHalantMatraUu.gm;
-  sub VaHalant.gm MatraU.gm by VaHalantMatraU.gm;
-  sub VaHalant.gm MatraUu.gm by VaHalantMatraUu.gm;  
-  sub HaHalant.gm MatraU.gm by HaHalantMatraU.gm;
-  sub HaHalant.gm MatraUu.gm by HaHalantMatraUu.gm;
-  sub RaHalant.gm Virama.gm by RaHalantVirama.gm;
-  sub VaHalant.gm Virama.gm by VaHalantVirama.gm;
-  sub HaHalant.gm Virama.gm by HaHalantVirama.gm;
-  sub Yakash.gm MatraU.gm by YakashMatraU.gm;
-  sub Yakash.gm MatraUu.gm by YakashMatraUu.gm;
-  sub Yakash.gm Virama.gm by YakashVirama.gm;
-  sub Udaat.gm MatraU.gm by UdaatMatraU.gm;
-  sub Udaat.gm MatraUu.gm by UdaatMatraUu.gm;
-  sub Udaat.gm Virama.gm by UdaatVirama.gm;
+  sub RaHalant.gm uMatra-gurmukhi by RaHalantMatraU.gm;
+  sub RaHalant.gm uuMatra-gurmukhi by RaHalantMatraUu.gm;
+  sub VaHalant.gm uMatra-gurmukhi by VaHalantMatraU.gm;
+  sub VaHalant.gm uuMatra-gurmukhi by VaHalantMatraUu.gm;  
+  sub HaHalant.gm uMatra-gurmukhi by HaHalantMatraU.gm;
+  sub HaHalant.gm uuMatra-gurmukhi by HaHalantMatraUu.gm;
+  sub RaHalant.gm halant-gurmukhi by RaHalantVirama.gm;
+  sub VaHalant.gm halant-gurmukhi by VaHalantVirama.gm;
+  sub HaHalant.gm halant-gurmukhi by HaHalantVirama.gm;
+  sub yakash-gurmukhi uMatra-gurmukhi by YakashMatraU.gm;
+  sub yakash-gurmukhi uuMatra-gurmukhi by YakashMatraUu.gm;
+  sub yakash-gurmukhi halant-gurmukhi by YakashVirama.gm;
+  sub udaat-gurmukhi uMatra-gurmukhi by UdaatMatraU.gm;
+  sub udaat-gurmukhi uuMatra-gurmukhi by UdaatMatraUu.gm;
+  sub udaat-gurmukhi halant-gurmukhi by UdaatVirama.gm;
 } lookup5;
 
 script guru;
@@ -1277,15 +1344,16 @@ code = "#> feature
 #    markClass Tippi.gm <anchor -147 817> @AboveBaseMarks;
 
   lookup mkmkLTR {
-      pos mark MatraUu.gm
+      pos mark uuMatra-gurmukhi
           <anchor -334 817> mark @AboveBaseMarks;
-      pos mark MatraEe.gm
+      pos mark eeMatra-gurmukhi
           <anchor 36 710> mark @AboveBaseMark2
           <anchor 111 816> mark @AboveBaseMarks;
   } mkmkLTR;
 
   lookup mkmkLTR;
-#< feature";
+#< feature
+";
 tag = mkmk;
 },
 {
@@ -1967,64 +2035,6 @@ code = "  @_A1_1st = [A Aacute Acircumflex Adieresis Agrave Aring Atilde uni1EA2
   lookup KERN_LTR;";
 disabled = 1;
 tag = kern;
-},
-{
-automatic = 1;
-code = "lookup ccmp_DFLT_1 {
-	lookupflag 0;
-	sub brevecomb acutecomb by brevecomb_acutecomb;
-	sub brevecomb gravecomb by brevecomb_gravecomb;
-	sub brevecomb hookabovecomb by brevecomb_hookabovecomb;
-	sub brevecomb tildecomb by brevecomb_tildecomb;
-	sub circumflexcomb acutecomb by circumflexcomb_acutecomb;
-	sub circumflexcomb gravecomb by circumflexcomb_gravecomb;
-	sub circumflexcomb hookabovecomb by circumflexcomb_hookabovecomb;
-	sub circumflexcomb tildecomb by circumflexcomb_tildecomb;
-} ccmp_DFLT_1;
-
-lookup ccmp_Other_1 {
-	@CombiningTopAccents = [acutecomb brevecomb caroncomb circumflexcomb commaturnedabovecomb dieresiscomb dotaccentcomb gravecomb hookabovecomb hungarumlautcomb macroncomb ringcomb tildecomb];
-	@CombiningNonTopAccents = [brevebelowcomb cedillacomb dieresisbelowcomb dotbelowcomb macronbelowcomb ogonekcomb horncomb];
-	sub [i j]' @CombiningTopAccents by [idotless jdotless];
-	sub [i j]' @CombiningNonTopAccents @CombiningTopAccents by [idotless jdotless];
-	@Markscomb = [dieresis dotaccent grave acute hungarumlaut circumflex caron breve ring tilde macron];
-	@MarkscombCase = [dieresis.case dotaccent.case grave.case acute.case hungarumlaut.case circumflex.case caron.case breve.case ring.case tilde.case macron.case];
-	sub @Markscomb @Markscomb' by @MarkscombCase;
-	sub @Uppercase @Markscomb' by @MarkscombCase;
-} ccmp_Other_1;
-
-lookup ccmp_Other_2 {
-	sub @Markscomb' @MarkscombCase by @MarkscombCase;
-	sub @MarkscombCase @Markscomb' by @MarkscombCase;
-} ccmp_Other_2;
-
-lookup ccmp_latn_1 {
-	sub fi by f i;
-	sub fl by f l;
-	sub Ldot by L periodcentered.loclCAT.case;
-} ccmp_latn_1;
-
-script latn;
-lookup ccmp_latn_1;
-";
-tag = ccmp;
-},
-{
-automatic = 1;
-code = "sub zero by zeroinferior;
-sub one by oneinferior;
-sub two by twoinferior;
-sub three by threeinferior;
-sub four by fourinferior;
-sub five by fiveinferior;
-sub six by sixinferior;
-sub seven by seveninferior;
-sub eight by eightinferior;
-sub nine by nineinferior;
-sub parenleft by parenleftinferior;
-sub parenright by parenrightinferior;
-";
-tag = sinf;
 },
 {
 automatic = 1;
@@ -75143,9 +75153,15 @@ unicode = 2636;
 },
 {
 glyphname = "halant-gurmukhi";
-lastChange = "2023-05-04 08:30:25 +0000";
+lastChange = "2023-05-05 08:32:19 +0000";
 layers = (
 {
+anchors = (
+{
+name = _bottom;
+pos = (-118,0);
+}
+);
 background = {
 shapes = (
 {
@@ -75229,7 +75245,7 @@ unicode = 2641;
 },
 {
 glyphname = "tippi-gurmukhi";
-lastChange = "2023-05-04 08:30:25 +0000";
+lastChange = "2023-05-05 08:22:29 +0000";
 layers = (
 {
 anchors = (
@@ -75299,18 +75315,6 @@ shapes = (
 {
 closed = 1;
 nodes = (
-(18,732,o),
-(30,765,o),
-(30,801,cs),
-(30,879,o),
-(-25,946,o),
-(-146,946,cs),
-(-266,946,o),
-(-323,882,o),
-(-323,802,cs),
-(-323,766,o),
-(-311,736,o),
-(-293,712,c),
 (-201,732,l),
 (-204,738,o),
 (-206,750,o),
@@ -75324,7 +75328,19 @@ nodes = (
 (-88,750,o),
 (-90,738,o),
 (-93,732,c),
-(2,710,l)
+(2,710,l),
+(18,732,o),
+(30,765,o),
+(30,801,cs),
+(30,879,o),
+(-25,946,o),
+(-146,946,cs),
+(-266,946,o),
+(-323,882,o),
+(-323,802,cs),
+(-323,766,o),
+(-311,736,o),
+(-293,712,c)
 );
 }
 );
