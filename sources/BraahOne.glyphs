@@ -1,15 +1,6 @@
 {
-.appVersion = "3189";
+.appVersion = "3192";
 .formatVersion = 3;
-DisplayStrings = (
-"ੂ",
-"ਂ",
-"ੁ",
-"ੇ",
-"◌",
-"ੈ",
-"ਡ"
-);
 classes = (
 {
 automatic = 1;
@@ -903,6 +894,7 @@ lookup ccmp_Other_1 {
 	@MarkscombCase = [dieresis.case dotaccent.case grave.case acute.case hungarumlaut.case circumflex.case caron.case breve.case ring.case tilde.case macron.case];
 	sub @Markscomb @Markscomb' by @MarkscombCase;
 	sub @Uppercase @Markscomb' by @MarkscombCase;
+	sub iogonek' @CombiningTopAccents by idotless ogonekcomb;
 } ccmp_Other_1;
 
 lookup ccmp_Other_2 {
@@ -30882,7 +30874,7 @@ unicode = 299;
 },
 {
 glyphname = iogonek;
-lastChange = "2023-05-04 08:39:44 +0000";
+lastChange = "2023-05-18 11:47:55 +0000";
 layers = (
 {
 background = {
@@ -30967,15 +30959,12 @@ type = BottomGhost;
 layerId = "49A649E9-A574-4B20-B218-33A3EC71A7EA";
 shapes = (
 {
-ref = idotless;
-},
-{
-pos = (20,-134);
-ref = dotaccentcomb;
-},
-{
-pos = (-31,6);
+pos = (-22,6);
 ref = ogonekcomb;
+},
+{
+pos = (9,0);
+ref = i;
 }
 );
 width = 260;
