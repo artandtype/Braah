@@ -1,6 +1,11 @@
 {
 .appVersion = "3192";
 .formatVersion = 3;
+DisplayStrings = (
+"◌
+",
+"ੱ"
+);
 classes = (
 {
 automatic = 1;
@@ -73781,7 +73786,7 @@ unicode = 8240;
 },
 {
 glyphname = dottedCircle;
-lastChange = "2023-05-05 13:37:20 +0000";
+lastChange = "2023-05-18 14:28:25 +0000";
 layers = (
 {
 anchors = (
@@ -73796,6 +73801,10 @@ pos = (298,584);
 {
 name = AboveBaseMatra;
 pos = (320,584);
+},
+{
+name = BelowBaseMark;
+pos = (298,16);
 },
 {
 name = BelowBaseMarks;
